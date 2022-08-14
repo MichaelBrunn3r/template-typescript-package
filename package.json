@@ -1,0 +1,70 @@
+{
+  "name": "@mibu/typescript-package",
+  "description": "",
+  "version": "0.0.0",
+  "author": "Michael Brunner <michaelbrunn3r@gmail.com>",
+  "keywords": [],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MichaelBrunn3r/typescript-package.git"
+  },
+  "homepage": "https://github.com/MichaelBrunn3r/typescript-package.git",
+  "bugs": {
+    "url": "https://github.com/MichaelBrunn3r/typescript-package/issues"
+  },
+  "main": "index.js",
+  "module": "index.mjs",
+  "types": "index.d.ts",
+  "files": [
+    "index.*",
+    "LICENSE",
+    "README.md",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "start": "tsup --watch",
+    "build": "tsup",
+    "lint": "eslint .",
+    "test": "jest",
+    "prepare": "is-ci || husky install",
+    "prepack": "pnpm build && ts-node ./scripts/prepack.ts",
+    "postversion": "cp ./package.json ../package.json"
+  },
+  "devDependencies": {
+    "@semantic-release/changelog": "^6.0.1",
+    "@semantic-release/git": "^10.0.1",
+    "@types/jest": "^28.1.6",
+    "@types/node": "^18.7.3",
+    "@typescript-eslint/eslint-plugin": "^5.33.0",
+    "@typescript-eslint/parser": "^5.33.0",
+    "eslint": "^8.22.0",
+    "eslint-config-prettier": "^8.5.0",
+    "husky": "^8.0.1",
+    "is-ci": "^3.0.1",
+    "jest": "^28.1.3",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1",
+    "semantic-release": "^19.0.3",
+    "ts-jest": "^28.0.7",
+    "ts-node": "^10.9.1",
+    "tslib": "^2.4.0",
+    "tsup": "^6.2.2",
+    "typescript": "^4.7.4"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "cache": true,
+    "cacheDirectory": ".cache/jest"
+  },
+  "lint-staged": {
+    "**/*.(js|ts)": [
+      "eslint",
+      "pnpm run test --bail --passWithNoTests --findRelatedTests"
+    ]
+  },
+  "publishConfig": {
+    "directory": "dist"
+  }
+}

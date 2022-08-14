@@ -1,0 +1,11 @@
+branches:
+  - main
+plugins:
+  - "@semantic-release/commit-analyzer"
+  - "@semantic-release/release-notes-generator"
+  - "@semantic-release/changelog"
+  - ["@semantic-release/npm", { pkgRoot: dist }]
+  # Create Github release. Include package as asset
+  - ["@semantic-release/github", { assets: dist/*.tgz }]
+  # Commit modified files
+  - ["@semantic-release/git", { assets: [package.json, CHANGELOG.md] }]
